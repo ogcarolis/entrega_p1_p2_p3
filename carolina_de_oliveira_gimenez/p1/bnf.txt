@@ -1,0 +1,24 @@
+<gpa> ::= <nome> <inicio> <corpo>* <fim>
+
+<nome> ::= "PROGRAMA " "\"" <label>+ "\"" ":"
+<inicio> ::= "\n" "INICIO" "\n" 
+<label> ::= ([a-z] [A-Z]*)+ | ([A-Z] [a-z]*)+
+
+<variavel> ::= "\n"* <label> <space> "=" <space> <valor> "\n"*
+<space> ::= " "?
+<valor> ::= <numberVar> | <expressao>
+
+<numberExp> ::= <pos> | <neg>
+<numberVar> ::= <pos> | <negVar>
+<pos> ::= [1-9] [0-9]* | "0"
+<neg> ::= "(-" [1-9] [0-9]* ")"
+<negVar> ::= "-" <space> [1-9] [0-9]*
+
+<expressao> ::= <soma_subtracao>
+<soma_subtracao> ::= <multiplicacao_divisao> ((<space> "+" <space> | <space> "-" <space>) <multiplicacao_divisao>)*
+<multiplicacao_divisao> ::= <termo> ((<space> "*" <space> | <space> "/" <space>) <termo>)*
+<termo> ::= <parenteses> | <numberExp> | <label>
+<parenteses> ::= "(" <expressao> ")"
+
+<corpo> ::= <variavel> | ( "\n"* <expressao> "\n"*)
+<fim> ::= "FIM"

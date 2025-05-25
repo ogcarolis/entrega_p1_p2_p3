@@ -1,0 +1,8 @@
+PROGRAMA "Exemplo":
+INICIO
+a = 5
+
+b = 10 + 10 + 10 - 19
+
+c = a - b
+FIM

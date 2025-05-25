@@ -1,0 +1,78 @@
+<programa> ::= <lista_de_declaracoes>
+
+<lista_de_declaracoes> ::= <declaracao> <lista_de_declaracoes> | E
+
+<declaracao> ::= <decl_var> 
+               | <decl_func> 
+               | <comando>
+
+<decl_var> ::= <tipo> <identificador> "=" <expressao> ";"
+
+<tipo> ::= "int" | "float" | "bool"
+
+<decl_func> ::= <tipo> <identificador> "(" <parametros> ")" "{" <lista_de_declaracoes> "}"
+
+<parametros> ::= <parametro> ("," <parametro>)* | E
+
+<parametro> ::= <tipo> <identificador>
+
+<comando> ::= <atribuicao> 
+            | <if> 
+            | <while> 
+            | <chamada_funcao> ";"
+            | <retorno>
+
+<atribuicao> ::= <identificador> "=" <expressao> ";"
+
+<if> ::= "if" "(" <expressao> ")" "{" <lista_de_declaracoes> "}" <else_opcional>
+
+<else_opcional> ::= "else" "{" <lista_de_declaracoes> "}" | E
+
+<while> ::= "while" "(" <expressao> ")" "{" <lista_de_declaracoes> "}"
+
+<retorno> ::= "return" <expressao> ";"
+
+<chamada_funcao> ::= <identificador> "(" <argumentos> ")"
+
+<argumentos> ::= <expressao> ("," <expressao>)* | E
+
+<expressao> ::= <expressao_or>
+
+<expressao_or> ::= <expressao_or> "OR" <expressao_and> 
+                  | <expressao_and>
+
+<expressao_and> ::= <expressao_and> "AND" <expressao_igualdade> 
+                   | <expressao_igualdade>
+
+<expressao_igualdade> ::= <expressao_igualdade> ("EQUAL" | "DIFF") <expressao_relacional> 
+                         | <expressao_relacional>
+
+<expressao_relacional> ::= <expressao_relacional> ("LT" | "GT" | "LE" | "GE") <expressao_aditiva> 
+                          | <expressao_aditiva>
+
+<expressao_aditiva> ::= <expressao_aditiva> ("+" | "-") <expressao_multiplicativa> 
+                       | <expressao_multiplicativa>
+
+<expressao_multiplicativa> ::= <expressao_multiplicativa> ("*" | "/") <expressao_unaria> 
+                              | <expressao_unaria>
+
+<expressao_unaria> ::= "(" <expressao> ")" 
+                      | <primario>
+
+<primario> ::= <numero_inteiro> 
+             | <numero_decimal> 
+             | <booleano> 
+             | <identificador> 
+             | <chamada_funcao>
+             
+<numero_inteiro> ::= <digito>+
+
+<numero_decimal> ::= <digito>+ "." <digito>+
+
+<booleano> ::= "true" | "false"
+
+<identificador> ::= <letra> (<letra> | <digito> | "_")*
+
+<letra> ::= [a-z] | [A-Z]
+
+<digito> ::= [0-9]
